@@ -24,7 +24,7 @@ function operate(number1, operator, number2) {
   } else if (operator === "*") {
     return multiply(number1, number2);
   } else if (operator === "/" && number2 === 0) {
-    return "cant / by 0";
+    return "Ha! Gotcha :)";
   } else if (operator === "/") return divide(number1, number2);
 }
 
@@ -37,7 +37,7 @@ const operated = document.getElementById("operate");
 const allClear = document.getElementById("allClear");
 const dot = document.querySelector(".dot");
 
-//onverting the nodelists into an arrays
+//converting the nodelists into an arrays
 
 const numbers = Array.prototype.slice.call(allNumbers);
 const operators = Array.prototype.slice.call(allOperators);
@@ -53,32 +53,29 @@ for (let i = 0; i < numbers.length; i++) {
   });
 }
 
-/////////////
-if (input.textContent.includes(0)) {
-  console.log("true");
-} else {
-  console.log("false");
-}
-
-/////////////
-
 console.log(temp);
 
 for (let i = 0; i < operators.length; i++) {
   operators[i].addEventListener("click", function () {
-    let clickOperator = operators[i].textContent;
-    console.log(clickOperator);
-    temp.push(input.value);
-    temp.push(clickOperator);
-    input.value = [];
-    console.log(temp);
+    if (!temp.includes("+", "-", "*", "/")) {
+      let clickOperator = operators[i].textContent;
+      console.log(clickOperator);
+      temp.push(input.value);
+      temp.push(clickOperator);
+      input.value = [];
+      console.log(temp);
+    }
   });
 }
 
+console.log(input.value.length);
+
 dot.addEventListener("click", function () {
-  let punt = dot.textContent;
-  input.value = input.value + punt;
-  input.textContent = input.value;
+  if (!input.textContent.includes(".") && input.value.length !== 0) {
+    let punt = dot.textContent;
+    input.value = input.value + punt;
+    input.textContent = input.value;
+  }
 });
 
 operated.addEventListener("click", function () {
