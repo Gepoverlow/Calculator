@@ -9,11 +9,11 @@ body {
 }
 
 .container-calculator {
+  background-color: coral;
   display: grid;
   grid-template-rows: 18% 82%;
   height: 550px;
   width: 400px;
-  background-color: darkgrey;
   border: 3px solid white;
   box-shadow: 5px 5px 5px;
   border-radius: 10px;
@@ -21,15 +21,16 @@ body {
 }
 
 .container-input {
+  background-color: chocolate;
   justify-content: right;
   display: flex;
-  background-color: black;
   border-radius: 10px;
   color: aliceblue;
   font-size: 70px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   padding-right: 10px;
   padding-top: 10px;
+  overflow: hidden;
 }
 
 .container-buttons {
@@ -46,4 +47,31 @@ body {
 button {
   margin: 1px;
   font-size: 30px;
+}
+
+.operator {
+  background-color: bisque;
+  color: crimson;
+}
+
+.number {
+  background-color: burlywood;
+}
+
+#operate {
+  background-color: chocolate;
+  color: bisque;
+}
+
+#allClear {
+  background-color: crimson;
+  color: burlywood;
+}
+
+.del {
+  background-color: darkred;
+  color: darkkhaki;
+}
+.dot {
+  background-color: darkkhaki;
 }

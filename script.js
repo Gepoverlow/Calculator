@@ -18,18 +18,33 @@ function divide(a, b) {
   return a / b;
 }
 
+function backspace(string) {
+  let sliced = string.slice(0, -1);
+  return sliced;
+}
+
+function expo(a, b) {
+  return Number.parseFloat(a).toExponential(b);
+}
+
 //OPERATRE FUNCTIONS BASED ON THE OPERATOR
 
 function operate(number1, operator, number2) {
   if (operator === "+") {
-    return add(number1, number2);
+    let added = add(number1, number2);
+    return added;
   } else if (operator === "-") {
-    return subtract(number1, number2);
+    let subtracted = subtract(number1, number2);
+    return subtracted;
   } else if (operator === "*") {
-    return multiply(number1, number2);
+    let multiplied = multiply(number1, number2);
+    return multiplied;
   } else if (operator === "/" && number2 === 0) {
     return "Ha! Gotcha :)";
-  } else if (operator === "/") return divide(number1, number2);
+  } else if (operator === "/") {
+    let divided = divide(number1, number2);
+    return parseFloat(divided.toFixed(3));
+  }
 }
 
 //QUERY SELECTORS
@@ -40,6 +55,7 @@ const input = document.querySelector(".container-input");
 const operated = document.getElementById("operate");
 const allClear = document.getElementById("allClear");
 const period = document.querySelector(".dot");
+const back = document.querySelector(".del");
 
 //converting the nodelists into an arrays
 
@@ -53,9 +69,11 @@ input.value = [];
 
 for (let i = 0; i < numbers.length; i++) {
   numbers[i].addEventListener("click", function () {
-    let clickNumber = numbers[i].textContent;
-    input.value = input.value + clickNumber;
-    input.textContent = input.value;
+    if (input.textContent.length < 12) {
+      let clickNumber = numbers[i].textContent;
+      input.value = input.value + clickNumber;
+      input.textContent = input.value;
+    } else alert("Number is too long, Please delete some numbers to proceed calculations");
   });
 }
 
@@ -66,7 +84,6 @@ for (let i = 0; i < operators.length; i++) {
       temp.push(input.value);
       temp.push(clickOperator);
       input.value = [];
-      console.log(temp);
     } else if (temp[1] !== undefined) {
       temp.push(input.value);
       let result = operate(+temp[0], temp[1], +temp[2]);
@@ -75,7 +92,6 @@ for (let i = 0; i < operators.length; i++) {
       input.textContent = result;
       temp.push(input.textContent);
       temp.push(clickOperator);
-      console.log(temp);
     }
   });
 }
@@ -122,4 +138,9 @@ allClear.addEventListener("click", function () {
   temp = [];
   input.value = [];
   input.textContent = 0;
+});
+
+back.addEventListener("click", function () {
+  input.value = backspace(input.textContent);
+  input.textContent = input.value;
 });
